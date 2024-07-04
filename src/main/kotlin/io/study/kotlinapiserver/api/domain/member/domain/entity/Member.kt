@@ -8,7 +8,10 @@ import jakarta.persistence.*
 class Member(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
+
+    @Column(nullable = false)
+    var email: String,
 
     @Embedded
     val password: MemberPassword,
@@ -23,5 +26,14 @@ class Member(
     @OneToMany(mappedBy = "member")
     val authorities: MutableSet<MemberAuthority> = mutableSetOf()
 ) {
-
+    companion object {
+        fun createBasicMember(email:String, nickname:String, password: String): Member {
+            return Member(
+                email = email,
+                password = MemberPassword(password),
+                nickname = nickname,
+                status = MemberStatus.ACTIVE,
+            )
+        }
+    }
 }
