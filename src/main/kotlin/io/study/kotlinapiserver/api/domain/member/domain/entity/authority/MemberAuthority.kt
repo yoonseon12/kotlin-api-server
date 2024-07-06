@@ -14,8 +14,17 @@ class MemberAuthority(
 
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
-    val member: Member,
+    var member: Member,
 
-    ) : BaseEntity() {
+) : BaseEntity() {
 
+    fun addMember(newMember: Member) {
+        this.member = newMember
+    }
+
+    companion object {
+        fun setRoleUser(member: Member): MemberAuthority {
+            return MemberAuthority(AuthorityType.ROLE_USER, member)
+        }
+    }
 }

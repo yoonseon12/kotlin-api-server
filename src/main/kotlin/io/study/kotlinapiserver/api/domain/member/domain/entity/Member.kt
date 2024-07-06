@@ -21,18 +21,26 @@ class Member(
     @Column(name="member_status", nullable = false)
     val status: MemberStatus,
 
-    @OneToMany(mappedBy = "member")
-    val authorities: MutableSet<MemberAuthority> = mutableSetOf()
+    @OneToMany(mappedBy = "member", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var authorities: MutableSet<MemberAuthority> = mutableSetOf()
+
 ) : BaseEntity() {
+
+    fun addAuthority(memberAuthority: MemberAuthority) {
+        authorities.add(memberAuthority)
+        memberAuthority.addMember(this)
+    }
 
     companion object {
         fun createBasicMember(email:String, nickname:String, password: String): Member {
-            return Member(
+            val newMember = Member(
                 email = email,
                 password = MemberPassword(password),
                 nickname = nickname,
                 status = MemberStatus.ACTIVE,
             )
+            newMember.addAuthority(MemberAuthority.setRoleUser(newMember))
+            return newMember
         }
     }
 }
