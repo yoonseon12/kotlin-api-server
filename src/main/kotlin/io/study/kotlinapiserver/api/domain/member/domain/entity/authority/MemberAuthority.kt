@@ -9,10 +9,12 @@ class MemberAuthority(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", nullable = false)
     val id: Long,
 
     @Enumerated(EnumType.STRING)
-    val role: AuthorityType,
+    @Column(name="authority")
+    val authority: AuthorityType,
 
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)

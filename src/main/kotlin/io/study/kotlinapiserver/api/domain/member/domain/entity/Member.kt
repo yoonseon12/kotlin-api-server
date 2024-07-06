@@ -8,9 +8,10 @@ import jakarta.persistence.*
 class Member(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id", nullable = false)
     val id: Long? = null,
 
-    @Column(nullable = false)
+    @Column(name="email", nullable = false)
     var email: String,
 
     @Embedded
@@ -20,7 +21,7 @@ class Member(
     val nickname: String,
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name="member_status", nullable = false)
     val status: MemberStatus,
 
     @OneToMany(mappedBy = "member")
