@@ -1,15 +1,12 @@
 package io.study.kotlinapiserver.api.domain.member.domain.entity
 
 import io.study.kotlinapiserver.api.domain.member.domain.entity.authority.MemberAuthority
+import io.study.kotlinapiserver.web.base.entity.BaseEntity
 import jakarta.persistence.*
 
 @Entity
 @Table(name = "member")
 class Member(
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable = false)
-    val id: Long? = null,
 
     @Column(name="email", nullable = false)
     var email: String,
@@ -26,7 +23,8 @@ class Member(
 
     @OneToMany(mappedBy = "member")
     val authorities: MutableSet<MemberAuthority> = mutableSetOf()
-) {
+) : BaseEntity() {
+
     companion object {
         fun createBasicMember(email:String, nickname:String, password: String): Member {
             return Member(
