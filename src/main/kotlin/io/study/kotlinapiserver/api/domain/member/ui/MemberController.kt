@@ -5,6 +5,7 @@ import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSignu
 import io.study.kotlinapiserver.api.domain.member.ui.dto.request.PostMemberSignupRequest
 import io.study.kotlinapiserver.api.domain.member.ui.dto.response.PostMemberSignupResponse
 import io.study.kotlinapiserver.web.base.BaseController
+import io.study.kotlinapiserver.web.base.response.SuccessResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -18,12 +19,12 @@ class MemberController(
     @PostMapping("/members")
     fun signup(
         @RequestBody request: PostMemberSignupRequest,
-    ): ResponseEntity<PostMemberSignupResponse> {
+    ): ResponseEntity<SuccessResponse<PostMemberSignupResponse>> {
         val command = MemberSignupRequest.of(request)
         val info = memberSignupService.signup(command)
         val response = PostMemberSignupResponse.of(info)
 
-        return ResponseEntity.ok(response)
+        return ResponseEntity.ok(SuccessResponse.of(response))
     }
 
 }
