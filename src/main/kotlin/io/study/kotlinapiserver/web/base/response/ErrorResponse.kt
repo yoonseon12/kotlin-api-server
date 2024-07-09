@@ -13,5 +13,11 @@ class ErrorResponse(
                 errorCode.getDescription(),
             )
         }
+
+        fun of(status: Int, message: String?): ErrorResponse {
+            return ErrorResponse(status,
+                message ?: "유효성 검증에 통과하지 못했습니다.",
+            )
+        }
     }
 }
