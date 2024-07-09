@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
 @Retention(AnnotationRetention.RUNTIME)
 @Pattern(
     regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+(\\.[a-zA-Z]{2,})+$",
-    message = "이메일 형식이 잘못되었습니다.",
+    message = "{valid-messages.invalid-email}",
 )
 @NotBlank
 annotation class ValidEmail(
@@ -20,6 +20,6 @@ annotation class ValidEmail(
 
     val groups: Array<KClass<*>> = [],
 
-    val payload: Array<KClass<out Payload>> = []
+    val payload: Array<KClass<out Payload>> = [],
 
 )
