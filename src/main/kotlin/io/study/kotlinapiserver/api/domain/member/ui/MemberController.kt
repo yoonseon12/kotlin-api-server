@@ -7,6 +7,7 @@ import io.study.kotlinapiserver.api.domain.member.ui.dto.response.PostMemberSign
 import io.study.kotlinapiserver.web.base.BaseController
 import io.study.kotlinapiserver.web.base.response.SuccessResponse
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -16,9 +17,9 @@ class MemberController(
     private val memberSignupService: MemberSignupService,
 ) : BaseController() {
 
-    @PostMapping("/members")
+    @PostMapping("/members", headers = [X_API_VERSION])
     fun signup(
-        @RequestBody request: PostMemberSignupRequest,
+        @RequestBody @Validated request: PostMemberSignupRequest,
     ): ResponseEntity<SuccessResponse<PostMemberSignupResponse>> {
         val command = MemberSignupRequest.of(request)
         val info = memberSignupService.signup(command)
