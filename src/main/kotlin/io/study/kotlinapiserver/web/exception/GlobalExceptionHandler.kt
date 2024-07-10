@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
-    private val logger = logger()
+
+    private val log = logger()
 
     @ExceptionHandler(ApiException::class)
     fun handleApiException(e: ApiException): ResponseEntity<ErrorResponse> {
-        logger.error(e.message)
+        log.error(e.message)
 
         return ResponseEntity.status(e.errorCode.getHttpStatus())
             .body(ErrorResponse.of(e.errorCode))
@@ -23,7 +24,7 @@ class GlobalExceptionHandler {
     fun handlerMethodArgumentNotValidException(
         e: MethodArgumentNotValidException
     ): ResponseEntity<ErrorResponse> {
-        logger.warn(e.message, e)
+        log.warn(e.message, e)
 
         return ResponseEntity.status(e.statusCode)
             .body(ErrorResponse.of(e.statusCode.value(), e.bindingResult.fieldError?.defaultMessage))

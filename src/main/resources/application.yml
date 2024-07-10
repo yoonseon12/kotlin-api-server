@@ -1,5 +1,9 @@
 spring:
 
+  config:
+    import:
+      - optional:classpath:/application-jwt.yml
+
   h2:
     console:
       enabled: true

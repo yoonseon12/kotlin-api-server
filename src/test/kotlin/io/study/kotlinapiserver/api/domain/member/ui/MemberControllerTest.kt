@@ -24,10 +24,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 class MemberControllerTest {
 
     companion object {
-        const val APPLICATION_JSON: String = "application/json"
-        const val X_API_VERSION: String = "x-api-version"
-        const val VERSION_V1: String = "v1"
-        const val SUCCESS_MESSAGE: String = "success"
+        private const val APPLICATION_JSON: String = "application/json"
+        private const val X_API_VERSION: String = "x-api-version"
+        private const val VERSION_V1: String = "v1"
+        private const val SUCCESS_MESSAGE: String = "success"
     }
 
     @Autowired
