@@ -3,7 +3,7 @@ package io.study.kotlinapiserver.api.domain.member.domain
 import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSignupRequest
 import io.study.kotlinapiserver.api.domain.member.domain.dto.response.MemberSignupResponse
 import io.study.kotlinapiserver.api.domain.member.domain.entity.Member
-import io.study.kotlinapiserver.api.domain.member.domain.repository.MemberRepository
+import io.study.kotlinapiserver.api.domain.member.infrasturcture.MemberRepository
 import io.study.kotlinapiserver.api.domain.member.domain.validation.MemberValidator
 import org.springframework.stereotype.Component
 
