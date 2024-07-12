@@ -23,9 +23,8 @@ class JwtProvider(
     private val key: Key
 
     init {
-        val keyBytes = Decoders.BASE64.decode(jwtProperties.secret);
-        this.key = Keys.hmacShaKeyFor(keyBytes);
-
+        val keyBytes = Decoders.BASE64.decode(jwtProperties.secret)
+        this.key = Keys.hmacShaKeyFor(keyBytes)
     }
 
     companion object {
@@ -96,7 +95,7 @@ class JwtProvider(
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(accessToken)
-                .getBody();
+                .body
         } catch (e: ExpiredJwtException) {
             e.claims
         }

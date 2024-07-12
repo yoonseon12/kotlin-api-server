@@ -110,6 +110,6 @@ class MemberControllerTest {
         resultActions
             .andExpect(status().isOk)
             .andExpect(jsonPath("$.data.email").value(validRequest.email))
-            .andExpect(jsonPath("$.message").value(SUCCESS_MESSAGE));
+            .andExpect(jsonPath("$.message").value(SUCCESS_MESSAGE))
     }
 }
