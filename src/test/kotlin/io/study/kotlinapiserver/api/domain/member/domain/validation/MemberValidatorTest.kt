@@ -1,7 +1,7 @@
 package io.study.kotlinapiserver.api.domain.member.domain.validation
 
 import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSignupRequest
-import io.study.kotlinapiserver.api.domain.member.infrasturcture.MemberQueryRepository
+import io.study.kotlinapiserver.api.domain.member.domain.repository.MemberQueryRepository
 import io.study.kotlinapiserver.web.exception.ApiException
 import io.study.kotlinapiserver.web.exception.error.MemberErrorCode
 import org.assertj.core.api.Assertions.assertThat
