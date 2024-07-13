@@ -47,7 +47,7 @@ class JwtProvider(
             .setSubject(sub)
             .claim(AUTHORITIES_KEY, authorities)
             .setExpiration(getExpirationTime(jwtProperties.accessTokenExpireTime))
-            .signWith(key, SignatureAlgorithm.ES512)
+            .signWith(key, SignatureAlgorithm.HS512)
             .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
             .compact()
     }
@@ -56,7 +56,7 @@ class JwtProvider(
         return Jwts.builder()
             .setSubject(sub)
             .setExpiration(getExpirationTime(jwtProperties.refreshTokenExpireTime))
-            .signWith(key, SignatureAlgorithm.ES512)
+            .signWith(key, SignatureAlgorithm.HS512)
             .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
             .compact()
     }

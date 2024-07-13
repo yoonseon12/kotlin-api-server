@@ -6,6 +6,7 @@ import io.jsonwebtoken.UnsupportedJwtException
 import io.jsonwebtoken.security.SecurityException
 import io.study.kotlinapiserver.web.base.log.logger
 import io.study.kotlinapiserver.web.exception.error.AuthErrorCode
+import io.study.kotlinapiserver.web.exception.error.ServerErrorCode
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -31,20 +32,19 @@ class JwtFilter(
         filterChain: FilterChain
     ) {
         val jwt = resolveToken(request)
-        validationToken(request, jwt)
 
-        if (StringUtils.hasText(jwt) && jwtProvider.validateAccessToken(jwt)) {
+        if (StringUtils.hasText(jwt) && validationToken(request, jwt)) {
             val authentication = jwtProvider.getAuthentication(jwt)
-            log.info("인증정보 저장 {}", authentication);
+            log.info("인증정보 저장 {}", authentication)
             SecurityContextHolder.getContext().authentication = authentication
         }
 
         filterChain.doFilter(request, response)
     }
 
-    private fun validationToken(request: HttpServletRequest, token: String) {
+    private fun validationToken(request: HttpServletRequest, token: String): Boolean {
         try {
-            jwtProvider.validateAccessToken(token)
+            return jwtProvider.validateAccessToken(token)
         } catch (e : Exception ) {
             when (e) {
                 is SecurityException, is MalformedJwtException -> {
@@ -72,10 +72,11 @@ class JwtFilter(
                     e.printStackTrace()
                     log.error("}")
                     log.error("================================================")
-                    request.setAttribute(ATTRIBUTE, AuthErrorCode.JWT_UNKNOWN_ERROR)
+                    request.setAttribute(ATTRIBUTE, ServerErrorCode.SERVER_ERROR)
                 }
             }
         }
+        return false
     }
 
     private fun resolveToken(request: HttpServletRequest): String {

@@ -3,8 +3,10 @@ package io.study.kotlinapiserver.web.exception.error
 import org.springframework.http.HttpStatus
 
 enum class AuthErrorCode(
+
     private val httpStatus: HttpStatus,
     private val message: String,
+
 ) : ErrorCode {
 
     INVALID_JWT_SIGNATURE(HttpStatus.BAD_REQUEST, "잘못된 서명입니다."),

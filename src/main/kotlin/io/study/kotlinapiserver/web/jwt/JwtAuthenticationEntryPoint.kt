@@ -33,7 +33,7 @@ class JwtAuthenticationEntryPoint : AuthenticationEntryPoint {
             AuthErrorCode.UNSUPPORTED_JWT_TOKEN,
             AuthErrorCode.INVALID_JWT_TOKEN,
             AuthErrorCode.JWT_UNKNOWN_ERROR -> response?.let { responseBuilder(it, attribute!!) }
-            else -> response?.let { responseBuilder(it, AuthErrorCode.JWT_UNKNOWN_ERROR) }
+            else -> response?.let { responseBuilder(it, AuthErrorCode.FORBIDDEN) }
         }
     }
 

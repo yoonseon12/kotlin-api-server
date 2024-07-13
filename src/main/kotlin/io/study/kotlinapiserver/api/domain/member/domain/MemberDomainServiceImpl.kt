@@ -5,20 +5,28 @@ import io.study.kotlinapiserver.api.domain.member.domain.dto.response.MemberSign
 import io.study.kotlinapiserver.api.domain.member.domain.entity.Member
 import io.study.kotlinapiserver.api.domain.member.domain.repository.MemberRepository
 import io.study.kotlinapiserver.api.domain.member.domain.validation.MemberValidator
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 @Component
 class MemberDomainServiceImpl(
-    private val memberValidator: MemberValidator,
+
     private val memberRepository: MemberRepository,
+    private val memberValidator: MemberValidator,
+    private val passwordEncoder: PasswordEncoder,
+
 ) : MemberDomainService {
 
     override fun register(request: MemberSignupRequest): MemberSignupResponse {
         memberValidator.signinValidate(request)
-        val initBasicMember = Member.createBasicMember(request.email, request.nickname, request.password)
+        val initBasicMember = Member.createBasicMember(request.email, request.nickname, encodePassword(request.password))
         val savedMember = memberRepository.save(initBasicMember)
 
         return MemberSignupResponse(savedMember.email)
+    }
+
+    private fun encodePassword(password: String): String {
+        return passwordEncoder.encode(password)
     }
 
 }

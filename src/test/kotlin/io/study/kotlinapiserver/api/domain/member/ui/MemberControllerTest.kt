@@ -1,6 +1,7 @@
 package io.study.kotlinapiserver.api.domain.member.ui
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.study.kotlinapiserver.api.domain.member.application.MemberSigninService
 import io.study.kotlinapiserver.api.domain.member.application.MemberSignupService
 import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSignupRequest
 import io.study.kotlinapiserver.api.domain.member.domain.dto.response.MemberSignupResponse
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.context.MessageSource
@@ -19,7 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
-
+@AutoConfigureMockMvc(addFilters = false)
 @WebMvcTest(controllers = [MemberController::class])
 class MemberControllerTest {
 
@@ -35,6 +37,9 @@ class MemberControllerTest {
 
     @MockBean
     private lateinit var memberSignupService: MemberSignupService
+
+    @MockBean
+    private lateinit var memberSigninService: MemberSigninService
 
     @Autowired
     private lateinit var messageSource: MessageSource

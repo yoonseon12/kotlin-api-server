@@ -11,8 +11,10 @@ class MemberQueryRepositoryAdaptor(
     override fun existsByNickname(nickname: String) =
         memberQueryJpaRepository.existsByNickname(nickname)
 
-
     override fun existsByEmail(nickname: String) =
         memberQueryJpaRepository.existsByEmail(nickname)
+
+    override fun findByEmail(email: String) =
+        memberQueryJpaRepository.findByEmail(email)
 
 }
