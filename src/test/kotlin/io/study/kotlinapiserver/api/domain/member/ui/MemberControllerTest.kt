@@ -6,14 +6,18 @@ import io.study.kotlinapiserver.api.domain.member.application.MemberSignupServic
 import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSignupRequest
 import io.study.kotlinapiserver.api.domain.member.domain.dto.response.MemberSignupResponse
 import io.study.kotlinapiserver.api.domain.member.ui.dto.request.PostMemberSignupRequest
+import io.study.kotlinapiserver.web.config.SecurityConfig
+import io.study.kotlinapiserver.web.jwt.JwtAccessDeniedHandler
+import io.study.kotlinapiserver.web.jwt.JwtAuthenticationEntryPoint
+import io.study.kotlinapiserver.web.jwt.JwtProvider
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.mockito.BDDMockito.given
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.context.MessageSource
+import org.springframework.context.annotation.Import
 import org.springframework.context.support.MessageSourceAccessor
 import org.springframework.http.HttpStatus
 import org.springframework.test.web.servlet.MockMvc
@@ -21,7 +25,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
-@AutoConfigureMockMvc(addFilters = false)
+@Import(SecurityConfig::class)
 @WebMvcTest(controllers = [MemberController::class])
 class MemberControllerTest {
 
@@ -35,11 +39,19 @@ class MemberControllerTest {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
+    // MemberController 주입 빈
     @MockBean
     private lateinit var memberSignupService: MemberSignupService
-
     @MockBean
     private lateinit var memberSigninService: MemberSigninService
+
+    // SecurityConfig 주입 빈
+    @MockBean
+    private lateinit var jwtAuthenticationEntryPoint: JwtAuthenticationEntryPoint
+    @MockBean
+    private lateinit var jwtAccessDeniedHandler: JwtAccessDeniedHandler
+    @MockBean
+    private lateinit var jwtProvider: JwtProvider
 
     @Autowired
     private lateinit var messageSource: MessageSource
