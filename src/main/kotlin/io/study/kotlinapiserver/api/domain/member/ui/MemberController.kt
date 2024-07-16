@@ -10,6 +10,7 @@ import io.study.kotlinapiserver.api.domain.member.ui.dto.request.PostMemberSigni
 import io.study.kotlinapiserver.api.domain.member.ui.dto.request.PostMemberSignupRequest
 import io.study.kotlinapiserver.api.domain.member.ui.dto.response.PostMemberSigninResponse
 import io.study.kotlinapiserver.api.domain.member.ui.dto.response.PostMemberSignupResponse
+import io.study.kotlinapiserver.web.annotation.OnlyOwnerAllowed
 import io.study.kotlinapiserver.web.base.BaseController
 import io.study.kotlinapiserver.web.base.response.SuccessResponse
 import org.springframework.http.ResponseEntity
@@ -47,11 +48,12 @@ class MemberController(
         return ResponseEntity.ok(SuccessResponse.of(response))
     }
 
-    @GetMapping("/members/{id}", headers = [X_API_VERSION])
+    @GetMapping("/members/{memberId}", headers = [X_API_VERSION])
+    @OnlyOwnerAllowed
     fun getMemberInfo(
-        @PathVariable id: Long
+        @PathVariable memberId: Long
     ): ResponseEntity<SuccessResponse<MemberInfoResponse>> {
-        val response = memberInfoService.getMemberInfo(id)
+        val response = memberInfoService.getMemberInfo(memberId)
 
         return ResponseEntity.ok(SuccessResponse.of(response))
     }
