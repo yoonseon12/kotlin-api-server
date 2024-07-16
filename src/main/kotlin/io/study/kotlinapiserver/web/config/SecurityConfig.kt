@@ -38,7 +38,7 @@ class SecurityConfig(
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
 
         http.csrf(CsrfConfigurer<HttpSecurity>::disable)
-            .formLogin(FormLoginConfigurer<HttpSecurity>::permitAll)
+            .formLogin(FormLoginConfigurer<HttpSecurity>::disable)
             .httpBasic(HttpBasicConfigurer<HttpSecurity>::disable)
 
 
