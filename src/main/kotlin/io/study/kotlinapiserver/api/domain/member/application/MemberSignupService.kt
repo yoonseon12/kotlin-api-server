@@ -20,10 +20,13 @@ class MemberSignupService(
         val savedInfo = memberDomainService.register(command)
 
         /** 이메일 전송 **/
-        val registeredEmail = savedInfo.email
-        Events.raise(SignupEvent.of(registeredEmail))
+        publishSignupSuccessEmailEvent(savedInfo.email)
 
         return savedInfo
+    }
+
+    private fun publishSignupSuccessEmailEvent(registeredEmail: String) {
+        Events.raise(SignupEvent.of(registeredEmail))
     }
 
 }
