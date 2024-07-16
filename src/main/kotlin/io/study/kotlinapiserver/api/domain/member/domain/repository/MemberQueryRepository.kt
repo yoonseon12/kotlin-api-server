@@ -12,4 +12,6 @@ interface MemberQueryRepository {
 
     fun findById(id: Long): Member?
 
+    fun findByIdWithAuthorities(id: Long): Member?
+
 }

@@ -20,4 +20,7 @@ class MemberQueryRepositoryAdaptor(
     override fun findById(id: Long) =
         memberQueryJpaRepository.findById(id)
 
+    override fun findByIdWithAuthorities(id: Long) =
+        memberQueryJpaRepository.findByIdWithAuthorities(id)
+
 }

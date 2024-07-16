@@ -31,7 +31,7 @@ class MemberDomainServiceImpl(
     }
 
     override fun getInfo(id: Long): MemberInfoResponse {
-        val findMember = memberQueryRepository.findById(id)
+        val findMember = memberQueryRepository.findByIdWithAuthorities(id)
             ?: throw ApiException(MemberErrorCode.NOT_FOUND_MEMBER)
 
         return MemberInfoResponse(
