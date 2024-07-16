@@ -11,4 +11,6 @@ interface MemberQueryJpaRepository : Repository<Member, Long> {
 
     fun findByEmail(email: String): Member?
 
+    fun findById(id: Long): Member?
+
 }

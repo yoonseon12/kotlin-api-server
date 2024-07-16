@@ -10,4 +10,6 @@ interface MemberQueryRepository {
 
     fun findByEmail(email: String): Member?
 
+    fun findById(id: Long): Member?
+
 }
