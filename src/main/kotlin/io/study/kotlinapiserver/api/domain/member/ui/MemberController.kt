@@ -4,8 +4,6 @@ import io.study.kotlinapiserver.api.domain.member.application.MemberInfoService
 import io.study.kotlinapiserver.api.domain.member.application.MemberResetService
 import io.study.kotlinapiserver.api.domain.member.application.MemberSigninService
 import io.study.kotlinapiserver.api.domain.member.application.MemberSignupService
-import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSigninRequest
-import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSignupRequest
 import io.study.kotlinapiserver.api.domain.member.domain.dto.response.MemberInfoResponse
 import io.study.kotlinapiserver.api.domain.member.ui.dto.request.PostMemberResetPassword
 import io.study.kotlinapiserver.api.domain.member.ui.dto.request.PostMemberSigninRequest
@@ -34,7 +32,7 @@ class MemberController(
     fun signup(
         @RequestBody @Validated request: PostMemberSignupRequest,
     ): ResponseEntity<SuccessResponse<PostMemberSignupResponse>> {
-        val command = MemberSignupRequest.of(request)
+        val command = request.toDomainDto()
         val info = memberSignupService.signup(command)
         val response = PostMemberSignupResponse.of(info)
 
@@ -45,7 +43,7 @@ class MemberController(
     fun signin(
         @RequestBody @Validated request: PostMemberSigninRequest,
     ): ResponseEntity<SuccessResponse<PostMemberSigninResponse>> {
-        val command = MemberSigninRequest.of(request)
+        val command = request.toDomainDto()
         val info = memberSigninService.signin(command)
         val response = PostMemberSigninResponse.of(info)
 
