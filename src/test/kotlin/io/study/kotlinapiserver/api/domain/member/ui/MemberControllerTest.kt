@@ -2,6 +2,7 @@ package io.study.kotlinapiserver.api.domain.member.ui
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.study.kotlinapiserver.api.domain.member.application.MemberInfoService
+import io.study.kotlinapiserver.api.domain.member.application.MemberResetService
 import io.study.kotlinapiserver.api.domain.member.application.MemberSigninService
 import io.study.kotlinapiserver.api.domain.member.application.MemberSignupService
 import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSignupRequest
@@ -47,6 +48,8 @@ class MemberControllerTest {
     private lateinit var memberSigninService: MemberSigninService
     @MockBean
     private lateinit var memberInfoService: MemberInfoService
+    @MockBean
+    private lateinit var memberResetService: MemberResetService
 
     // SecurityConfig 주입 빈
     @MockBean

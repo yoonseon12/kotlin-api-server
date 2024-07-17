@@ -23,6 +23,7 @@ class MemberResetService(
         private const val MIN_LENGTH = 8;
         private const val MAX_LENGTH = 16;
     }
+
     @Transactional
     fun resetPassword(request: MemberResetPasswordRequest) {
         val tempPassword = createTempPassword()
@@ -30,7 +31,7 @@ class MemberResetService(
         memberDomainService.resetPassword(MemberResetPasswordRequest(request.email, tempPassword))
 
         /** 비밀번호 변경 메일 전송 **/
-        Events.raise(ResetPasswordEvent.of(tempPassword, request.email))
+        publishResetPasswordSuccessEmailEvent(tempPassword, request.email)
     }
 
     private fun createTempPassword(): String {
@@ -42,6 +43,13 @@ class MemberResetService(
         addValidCharacters(specialCharacterLength, passwordLength, password)
 
         return shufflePassword(password)
+    }
+
+    private fun publishResetPasswordSuccessEmailEvent(
+        password: String,
+        registeredEmail: String,
+    ) {
+        Events.raise(ResetPasswordEvent.of(password, registeredEmail))
     }
 
     private fun shufflePassword(password: StringBuilder): String {
