@@ -12,7 +12,7 @@ class Member(
     var email: String,
 
     @Embedded
-    val password: MemberPassword,
+    var password: MemberPassword,
 
     @Column(name = "nickname", nullable = false)
     val nickname: String,
@@ -29,6 +29,10 @@ class Member(
     fun addAuthority(memberAuthority: MemberAuthority) {
         authorities.add(memberAuthority)
         memberAuthority.addMember(this)
+    }
+
+    fun changePassword(newPassword: String) {
+        password = MemberPassword(newPassword)
     }
 
     companion object {

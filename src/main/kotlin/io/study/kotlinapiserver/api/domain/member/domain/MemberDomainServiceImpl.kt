@@ -1,5 +1,6 @@
 package io.study.kotlinapiserver.api.domain.member.domain
 
+import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberResetPasswordRequest
 import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSignupRequest
 import io.study.kotlinapiserver.api.domain.member.domain.dto.response.MemberInfoResponse
 import io.study.kotlinapiserver.api.domain.member.domain.dto.response.MemberSignupResponse
@@ -39,6 +40,13 @@ class MemberDomainServiceImpl(
             nickname = findMember.nickname,
             roles = findMember.authorities.map { it.authority }
         )
+    }
+
+    override fun resetPassword(request: MemberResetPasswordRequest) {
+        val findMember = memberQueryRepository.findByEmail(request.email)
+            ?: throw ApiException(MemberErrorCode.NOT_FOUND_MEMBER)
+
+        findMember.changePassword(encodePassword(request.tempPassword!!))
     }
 
     private fun encodePassword(password: String): String {

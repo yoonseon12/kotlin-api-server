@@ -1,17 +1,20 @@
 package io.study.kotlinapiserver.api.domain.member.ui
 
 import io.study.kotlinapiserver.api.domain.member.application.MemberInfoService
+import io.study.kotlinapiserver.api.domain.member.application.MemberResetService
 import io.study.kotlinapiserver.api.domain.member.application.MemberSigninService
 import io.study.kotlinapiserver.api.domain.member.application.MemberSignupService
 import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSigninRequest
 import io.study.kotlinapiserver.api.domain.member.domain.dto.request.MemberSignupRequest
 import io.study.kotlinapiserver.api.domain.member.domain.dto.response.MemberInfoResponse
+import io.study.kotlinapiserver.api.domain.member.ui.dto.request.PostMemberResetPassword
 import io.study.kotlinapiserver.api.domain.member.ui.dto.request.PostMemberSigninRequest
 import io.study.kotlinapiserver.api.domain.member.ui.dto.request.PostMemberSignupRequest
 import io.study.kotlinapiserver.api.domain.member.ui.dto.response.PostMemberSigninResponse
 import io.study.kotlinapiserver.api.domain.member.ui.dto.response.PostMemberSignupResponse
 import io.study.kotlinapiserver.web.annotation.OnlyOwnerAllowed
 import io.study.kotlinapiserver.web.base.BaseController
+import io.study.kotlinapiserver.web.base.response.BaseResponse
 import io.study.kotlinapiserver.web.base.response.SuccessResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
@@ -23,6 +26,7 @@ class MemberController(
     private val memberSignupService: MemberSignupService,
     private val memberSigninService: MemberSigninService,
     private val memberInfoService: MemberInfoService,
+    private val memberResetService: MemberResetService,
 
     ) : BaseController() {
 
@@ -57,5 +61,16 @@ class MemberController(
 
         return ResponseEntity.ok(SuccessResponse.of(response))
     }
+
+    @PostMapping("/members/reset-password", headers = [X_API_VERSION])
+    fun resetPassword(
+        @RequestBody @Validated request: PostMemberResetPassword,
+    ) : ResponseEntity<BaseResponse>{
+        val command = request.toDomainDto()
+        memberResetService.resetPassword(command)
+
+        return ResponseEntity.ok(BaseResponse())
+    }
+
 
 }

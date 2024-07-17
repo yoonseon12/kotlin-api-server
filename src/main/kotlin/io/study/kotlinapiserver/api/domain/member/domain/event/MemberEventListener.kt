@@ -20,4 +20,12 @@ class MemberEventListener(
         
         mailService.sendMail(signupEvent.emails, "회원가입 완료 안내", "회원가입이 완료되었습니다.")
     }
+
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    @Async
+    fun resetPasswordEventListener(resetPasswordEvent: ResetPasswordEvent) {
+        log.info("MemberEventListener.resetPasswordEventListener !! ")
+
+        mailService.sendMail(resetPasswordEvent.emails, "임시비밀번호 발급 안내", "임시발급 비밀번호 : ${resetPasswordEvent.tempPassword}")
+    }
 }
