@@ -32,6 +32,8 @@ kotlin {
     }
 }
 
+val mockitoKotlin: String by project.extra
+
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
@@ -47,7 +49,7 @@ subprojects {
         // test
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-        testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+        testImplementation("org.mockito.kotlin:mockito-kotlin:$mockitoKotlin")
         testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     }
 

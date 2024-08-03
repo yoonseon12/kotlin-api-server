@@ -1,6 +1,8 @@
 package io.study.moduleapi.member
 
 import io.study.moduleapi.common.base.BaseController
+import io.study.moduleapi.common.base.response.BaseResponse
+import io.study.moduleapi.common.base.response.SuccessResponse
 import io.study.moduleapi.member.dto.request.PostMemberResetPassword
 import io.study.moduleapi.member.dto.request.PostMemberSigninRequest
 import io.study.moduleapi.member.dto.request.PostMemberSignupRequest
@@ -12,8 +14,6 @@ import io.study.moduleapplication.member.MemberSigninUsecase
 import io.study.moduleapplication.member.MemberSignupUsecase
 import io.study.modulecommon.annotation.OnlyOwnerAllowed
 import io.study.moduledomain.member.dto.response.MemberInfoResponse
-import io.study.moduletemp.web.base.response.BaseResponse
-import io.study.moduletemp.web.base.response.SuccessResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*

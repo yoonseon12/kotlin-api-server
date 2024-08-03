@@ -1,4 +1,4 @@
-package io.study.moduledomain.member.validation
+package io.study.moduledomain.member.service.validation
 
 import io.study.modulecommon.exception.ApiException
 import io.study.modulecommon.exception.error.MemberErrorCode

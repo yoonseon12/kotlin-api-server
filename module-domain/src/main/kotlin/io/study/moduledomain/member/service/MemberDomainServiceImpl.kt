@@ -9,7 +9,7 @@ import io.study.moduledomain.member.dto.response.MemberSignupResponse
 import io.study.moduledomain.member.entity.Member
 import io.study.moduledomain.member.repository.MemberQueryRepository
 import io.study.moduledomain.member.repository.MemberRepository
-import io.study.moduledomain.member.validation.MemberValidator
+import io.study.moduledomain.member.service.validation.MemberValidator
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 

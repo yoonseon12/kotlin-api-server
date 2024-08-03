@@ -1,4 +1,4 @@
-package io.study.moduledomain.temp.aop
+package io.study.moduledomain.member.aop
 
 import io.study.modulecommon.exception.ApiException
 import io.study.modulecommon.exception.error.AuthErrorCode

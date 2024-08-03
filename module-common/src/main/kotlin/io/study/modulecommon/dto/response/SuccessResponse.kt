@@ -1,4 +1,4 @@
-package io.study.moduletemp.web.base.response
+package io.study.moduleapi.common.base.response
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder
 

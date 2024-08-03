@@ -1,7 +1,8 @@
-package io.study.modulecommon.exception
+package io.study.moduleapi.common.exceptionhandler
 
+import io.study.moduleapi.common.base.response.ErrorResponse
+import io.study.modulecommon.exception.ApiException
 import io.study.modulecommon.log.logger
-import io.study.moduletemp.web.base.response.ErrorResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException

@@ -1,8 +1,8 @@
 package io.study.moduleinfra.security.jwt
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.study.moduleapi.common.base.response.ErrorResponse
 import io.study.modulecommon.exception.error.AuthErrorCode
-import io.study.moduletemp.web.base.response.ErrorResponse
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.MediaType

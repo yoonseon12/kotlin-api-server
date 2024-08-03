@@ -1,7 +1,7 @@
-package io.study.moduledomain.temp.config
+package io.study.moduleapi.config
 
-import io.study.modulecommon.exception.AsyncExceptionHandler
-import io.study.moduledomain.temp.config.mdc.MdcTaskDecorator
+import io.study.moduleapi.common.exceptionhandler.AsyncExceptionHandler
+import io.study.moduleapi.config.mdc.MdcTaskDecorator
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

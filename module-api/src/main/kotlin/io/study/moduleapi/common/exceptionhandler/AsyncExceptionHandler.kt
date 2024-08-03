@@ -1,4 +1,4 @@
-package io.study.modulecommon.exception
+package io.study.moduleapi.common.exceptionhandler
 
 import io.study.modulecommon.log.logger
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler
