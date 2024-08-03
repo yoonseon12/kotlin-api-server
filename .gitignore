@@ -39,4 +39,7 @@ out/
 ### Kotlin ###
 .kotlin
 
+### mac OS ###
+**/.DS_Store
+
 /src/main/resources/application-mail.yml
