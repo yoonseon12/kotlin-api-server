@@ -1,4 +1,4 @@
-package io.study.moduleinfra.member
+package io.study.moduleinfra.persistence.facade.jpa.expansion
 
 import org.springframework.data.repository.CrudRepository
 

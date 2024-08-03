@@ -5,9 +5,9 @@ import io.study.modulecommon.dto.TokenDto
 import io.study.moduleinfra.security.jwt.JwtProvider
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
-import org.springframework.stereotype.Service
+import org.springframework.stereotype.Component
 
-@Service
+@Component
 class SecurityServiceImpl(
 
     private val jwtProvider: JwtProvider,

@@ -1,10 +1,8 @@
-package io.study.moduledomain.temp.config
+package io.study.moduleinfra.persistence.config
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @Configuration
 @EnableJpaAuditing
-@EnableJpaRepositories
 class JpaAuditingConfig

@@ -1,6 +1,8 @@
-package io.study.moduleinfra.member
+package io.study.moduleinfra.persistence.facade
 
 import io.study.moduledomain.member.repository.MemberQueryRepository
+import io.study.moduleinfra.persistence.facade.jpa.expansion.findByIdOrElseNull
+import io.study.moduleinfra.persistence.facade.jpa.MemberQueryJpaRepository
 import org.springframework.stereotype.Component
 
 @Component
