@@ -1,4 +1,4 @@
-package io.study.moduledomain.member.principal
+package io.study.moduleinfra.security
 
 import io.study.moduledomain.member.entity.Member
 import org.springframework.security.core.GrantedAuthority

@@ -1,6 +1,6 @@
 package io.study.moduledomain.member.entity
 
-import io.study.moduledomain.base.BaseEntity
+import io.study.moduledomain.common.base.BaseEntity
 import io.study.moduledomain.member.entity.authority.MemberAuthority
 import jakarta.persistence.*
 

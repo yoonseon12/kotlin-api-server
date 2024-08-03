@@ -1,4 +1,4 @@
-package io.study.moduledomain.member.principal
+package io.study.moduleinfra.security
 
 import io.study.modulecommon.exception.ApiException
 import io.study.modulecommon.exception.error.AuthErrorCode

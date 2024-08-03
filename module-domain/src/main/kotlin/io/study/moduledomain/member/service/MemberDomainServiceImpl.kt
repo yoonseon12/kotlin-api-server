@@ -2,6 +2,7 @@ package io.study.moduledomain.member.service
 
 import io.study.modulecommon.exception.ApiException
 import io.study.modulecommon.exception.error.MemberErrorCode
+import io.study.modulecommon.interfaces.SecurityService
 import io.study.moduledomain.member.dto.request.MemberResetPasswordRequest
 import io.study.moduledomain.member.dto.request.MemberSignupRequest
 import io.study.moduledomain.member.dto.response.MemberInfoResponse
@@ -10,7 +11,6 @@ import io.study.moduledomain.member.entity.Member
 import io.study.moduledomain.member.repository.MemberQueryRepository
 import io.study.moduledomain.member.repository.MemberRepository
 import io.study.moduledomain.member.service.validation.MemberValidator
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 
 @Component
@@ -19,7 +19,7 @@ class MemberDomainServiceImpl(
     private val memberQueryRepository: MemberQueryRepository,
     private val memberRepository: MemberRepository,
     private val memberValidator: MemberValidator,
-    private val passwordEncoder: PasswordEncoder,
+    private val securityService: SecurityService,
 
     ) : MemberDomainService {
 
@@ -50,7 +50,7 @@ class MemberDomainServiceImpl(
     }
 
     private fun encodePassword(password: String): String {
-        return passwordEncoder.encode(password)
+        return securityService.encodePassword(password)
     }
 
 }

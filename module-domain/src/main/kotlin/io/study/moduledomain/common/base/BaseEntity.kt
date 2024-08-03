@@ -1,4 +1,4 @@
-package io.study.moduledomain.base
+package io.study.moduledomain.common.base
 
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate

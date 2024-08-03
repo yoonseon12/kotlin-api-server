@@ -1,6 +1,6 @@
 package io.study.moduleapplication.member
 
-import io.study.moduleapplication.interfaces.SecurityService
+import io.study.modulecommon.interfaces.SecurityService
 import io.study.moduledomain.member.dto.request.MemberSigninRequest
 import io.study.moduledomain.member.dto.response.MemberSigninResponse
 import org.springframework.stereotype.Service

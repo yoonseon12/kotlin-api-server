@@ -1,4 +1,4 @@
-package io.study.moduleapi.config
+package io.study.moduleinfra.event
 
 import io.study.moduletemp.web.base.event.Events
 import org.springframework.beans.factory.InitializingBean

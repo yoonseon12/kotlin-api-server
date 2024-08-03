@@ -1,7 +1,5 @@
 dependencies {
     implementation(project(":module-common"))
-    implementation(project(":module-external"))
-    implementation("org.springframework.boot:spring-boot-starter-security")
     api("org.springframework.boot:spring-boot-starter-data-jpa")
 
     // H2

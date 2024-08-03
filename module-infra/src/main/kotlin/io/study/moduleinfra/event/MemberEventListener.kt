@@ -1,6 +1,8 @@
-package io.study.moduledomain.member.event
+package io.study.moduleinfra.event
 
 import io.study.modulecommon.log.logger
+import io.study.moduledomain.member.event.ResetPasswordEvent
+import io.study.moduledomain.member.event.SignupEvent
 import io.study.moduleexternal.mail.MailService
 import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Component

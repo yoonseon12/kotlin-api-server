@@ -4,6 +4,7 @@ dependencies {
     implementation(project(":module-application"))
     implementation(project(":module-domain"))
     implementation(project(":module-common"))
+    implementation(project(":module-external"))
     implementation("org.springframework.boot:spring-boot-starter-security")
     api("org.springframework.boot:spring-boot-starter-data-jpa")
 
