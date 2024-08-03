@@ -18,7 +18,7 @@ class MemberQueryRepositoryAdaptor(
         memberQueryJpaRepository.findByEmail(email)
 
     override fun findById(id: Long) =
-        memberQueryJpaRepository.findById(id)
+        memberQueryJpaRepository.findByIdOrElseNull(id)
 
     override fun findByIdWithAuthorities(id: Long) =
         memberQueryJpaRepository.findByIdWithAuthorities(id)
