@@ -1,9 +1,10 @@
-package io.study.moduletemp.web.jwt
+package io.study.moduleinfra.security.jwt
 
 import io.jsonwebtoken.*
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
-import io.study.moduledomain.temp.config.properties.JwtProperties
+import io.study.modulecommon.dto.TokenDto
+import io.study.moduleinfra.security.jwt.properties.JwtProperties
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -31,7 +32,7 @@ class JwtProvider(
         private const val AUTHORITIES_KEY = "auth"
     }
 
-    fun createToken(authentication: Authentication): TokenInfo {
+    fun createToken(authentication: Authentication): TokenDto {
         val authirities = authentication.authorities
             .map { it.authority }
             .joinToString(", ")
@@ -39,7 +40,7 @@ class JwtProvider(
         val accessToken = createAccessToken(authentication.name, authirities)
         val refreshToken = createRefreshToken(authentication.name)
 
-        return TokenInfo(accessToken, refreshToken)
+        return TokenDto(accessToken, refreshToken)
     }
 
     private fun createAccessToken(sub: String, authorities: String): String {

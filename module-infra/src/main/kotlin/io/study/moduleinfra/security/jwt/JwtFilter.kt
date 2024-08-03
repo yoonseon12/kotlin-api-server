@@ -1,4 +1,4 @@
-package io.study.moduledomain.temp.jwt
+package io.study.moduleinfra.security.jwt
 
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.MalformedJwtException
@@ -6,8 +6,6 @@ import io.jsonwebtoken.UnsupportedJwtException
 import io.study.modulecommon.exception.error.AuthErrorCode
 import io.study.modulecommon.exception.error.ServerErrorCode
 import io.study.modulecommon.log.logger
-
-import io.study.moduletemp.web.jwt.JwtProvider
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse

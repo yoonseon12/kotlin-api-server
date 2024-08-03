@@ -1,9 +1,9 @@
-package io.study.moduledomain.temp.config
+package io.study.moduleinfra.security.config
 
-import io.study.moduledomain.temp.jwt.JwtAccessDeniedHandler
-import io.study.moduledomain.temp.jwt.JwtAuthenticationEntryPoint
-import io.study.moduletemp.web.jwt.JwtProvider
-import io.study.moduledomain.temp.jwt.JwtSecurityConfig
+import io.study.moduleinfra.security.jwt.JwtAccessDeniedHandler
+import io.study.moduleinfra.security.jwt.JwtAuthenticationEntryPoint
+import io.study.moduleinfra.security.jwt.JwtProvider
+import io.study.moduleinfra.security.jwt.JwtSecurityConfig
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -1,4 +1,4 @@
-package io.study.moduledomain.temp.config.properties
+package io.study.moduleinfra.security.jwt.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.bind.ConstructorBinding

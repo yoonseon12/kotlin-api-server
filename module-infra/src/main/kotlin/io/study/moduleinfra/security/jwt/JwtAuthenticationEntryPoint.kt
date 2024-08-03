@@ -1,4 +1,4 @@
-package io.study.moduledomain.temp.jwt
+package io.study.moduleinfra.security.jwt
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.study.modulecommon.exception.error.AuthErrorCode
