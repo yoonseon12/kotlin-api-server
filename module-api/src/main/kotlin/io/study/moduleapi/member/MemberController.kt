@@ -6,10 +6,10 @@ import io.study.moduleapi.member.dto.request.PostMemberSigninRequest
 import io.study.moduleapi.member.dto.request.PostMemberSignupRequest
 import io.study.moduleapi.member.dto.response.PostMemberSigninResponse
 import io.study.moduleapi.member.dto.response.PostMemberSignupResponse
-import io.study.moduleapplication.member.MemberInfoService
-import io.study.moduleapplication.member.MemberResetService
-import io.study.moduleapplication.member.MemberSigninService
-import io.study.moduleapplication.member.MemberSignupService
+import io.study.moduleapplication.member.MemberInfoUsecase
+import io.study.moduleapplication.member.MemberResetUsecase
+import io.study.moduleapplication.member.MemberSigninUsecase
+import io.study.moduleapplication.member.MemberSignupUsecase
 import io.study.modulecommon.annotation.OnlyOwnerAllowed
 import io.study.moduledomain.member.dto.response.MemberInfoResponse
 import io.study.moduletemp.web.base.response.BaseResponse
@@ -21,19 +21,19 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class MemberController(
 
-    private val memberSignupService: MemberSignupService,
-    private val memberSigninService: MemberSigninService,
-    private val memberInfoService: MemberInfoService,
-    private val memberResetService: MemberResetService,
+    private val memberSignupUsecase: MemberSignupUsecase,
+    private val memberSigninUsecase: MemberSigninUsecase,
+    private val memberInfoUsecase: MemberInfoUsecase,
+    private val memberResetUsecase: MemberResetUsecase,
 
-    ) : BaseController() {
+) : BaseController() {
 
     @PostMapping("/members", headers = [X_API_VERSION])
     fun signup(
         @RequestBody @Validated request: PostMemberSignupRequest,
     ): ResponseEntity<SuccessResponse<PostMemberSignupResponse>> {
         val command = request.toDomainDto()
-        val info = memberSignupService.signup(command)
+        val info = memberSignupUsecase.signup(command)
         val response = PostMemberSignupResponse.of(info)
 
         return ResponseEntity.ok(SuccessResponse.of(response))
@@ -44,7 +44,7 @@ class MemberController(
         @RequestBody @Validated request: PostMemberSigninRequest,
     ): ResponseEntity<SuccessResponse<PostMemberSigninResponse>> {
         val command = request.toDomainDto()
-        val info = memberSigninService.signin(command)
+        val info = memberSigninUsecase.signin(command)
         val response = PostMemberSigninResponse.of(info)
 
         return ResponseEntity.ok(SuccessResponse.of(response))
@@ -55,7 +55,7 @@ class MemberController(
     fun getMemberInfo(
         @PathVariable memberId: Long
     ): ResponseEntity<SuccessResponse<MemberInfoResponse>> {
-        val response = memberInfoService.getMemberInfo(memberId)
+        val response = memberInfoUsecase.getMemberInfo(memberId)
 
         return ResponseEntity.ok(SuccessResponse.of(response))
     }
@@ -65,10 +65,9 @@ class MemberController(
         @RequestBody @Validated request: PostMemberResetPassword,
     ) : ResponseEntity<BaseResponse>{
         val command = request.toDomainDto()
-        memberResetService.resetPassword(command)
+        memberResetUsecase.resetPassword(command)
 
         return ResponseEntity.ok(BaseResponse())
     }
-
 
 }

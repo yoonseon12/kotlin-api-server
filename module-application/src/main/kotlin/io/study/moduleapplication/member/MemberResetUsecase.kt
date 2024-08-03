@@ -11,11 +11,11 @@ import java.util.*
 
 @Service
 @Transactional(readOnly = true)
-class MemberResetService(
+class MemberResetUsecase(
 
     private val memberDomainService: MemberDomainService,
 
-    ) {
+) {
     companion object {
         private const val VALID_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         private const val SPECIAL_CHARACTERS = "!@#$%^&*()\\-_=+"

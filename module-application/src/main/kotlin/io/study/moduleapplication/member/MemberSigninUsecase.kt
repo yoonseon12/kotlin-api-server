@@ -1,6 +1,5 @@
 package io.study.moduleapplication.member
 
-
 import io.study.moduledomain.member.dto.request.MemberSigninRequest
 import io.study.moduledomain.member.dto.response.MemberSigninResponse
 import io.study.moduletemp.web.jwt.JwtProvider
@@ -11,9 +10,11 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional(readOnly = true)
-class MemberSigninService(
+class MemberSigninUsecase(
+
     private val jwtProvider: JwtProvider,
     private val authenticationManagerBuilder: AuthenticationManagerBuilder,
+
 ) {
 
     fun signin(request: MemberSigninRequest): MemberSigninResponse {

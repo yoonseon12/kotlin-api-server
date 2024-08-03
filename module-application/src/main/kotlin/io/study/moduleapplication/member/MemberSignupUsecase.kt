@@ -1,6 +1,5 @@
 package io.study.moduleapplication.member
 
-
 import io.study.moduledomain.member.dto.request.MemberSignupRequest
 import io.study.moduledomain.member.event.SignupEvent
 import io.study.moduledomain.member.service.MemberDomainService
@@ -11,12 +10,15 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional(readOnly = true)
-class MemberSignupService(
+class MemberSignupUsecase(
+
     private val memberDomainService: MemberDomainService,
+
 ) {
 
     @Transactional
     fun signup(command: MemberSignupRequest): MemberSignupResponse {
+
         /** 회원가입 **/
         val savedInfo = memberDomainService.register(command)
 

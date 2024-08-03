@@ -6,14 +6,13 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-@Transactional
-class MemberInfoService(
+@Transactional(readOnly = true)
+class MemberInfoUsecase(
 
     private val memberDomainService: MemberDomainService,
 
-    ) {
+) {
 
-    @Transactional(readOnly = true)
     fun getMemberInfo(id: Long): MemberInfoResponse {
         return memberDomainService.getInfo(id)
     }
