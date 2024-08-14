@@ -1,0 +1,4 @@
+GET localhost:8080/api/members/1
+x-api-version: v1
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5b29uc2VvbjNAZ21haWwuY29tIiwiYXV0aCI6IlJPTEVfVVNFUiIsImV4cCI6MTcyMTEyMzQ4MH0.3-MFaAiWwAgICiTFxej4E-BvBNjoAhVD_8s6igLl-6U1jLcxEJwv-YE0v3hmTlbegQeOcfH8WHnFMp9vvr-UKA
